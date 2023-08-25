@@ -1,0 +1,61 @@
+# Many codes is stolen from AmusementClub(
+name: Test (For Windows)
+
+on: workflow_dispatch
+
+jobs:
+  build-windows:
+    runs-on: windows-latest
+
+    defaults:
+      run:
+        shell: cmd
+
+    steps:
+    - name: Checkout repo
+      uses: actions/checkout@v3
+      with:
+        fetch-depth: 0
+
+    - name: Download & Unpack Environments
+      run: |
+        curl -s -o vs.7z -L https://github.com/fu-loser-ck/MyPacks/releases/download/vsenv/VapourSynthR61.7z
+        7z x vs.7z
+        curl -s -o x265.7z -L https://github.com/fu-loser-ck/MyPacks/releases/download/vsenv/x265.7z
+        7z x x265.7z
+        curl -s -o bangdream-action.vpy -L https://haf208.cc/f/dASL/bangdream-action.vpy
+        curl -s -o 11.mkv -L https://haf208.cc/f/6pcG/%5BSubsPlease%5D%20BanG%20Dream%21%20It%27s%20MyGO%21%21%21%21%21%20-%2011%20%281080p%29%20%5B02103E26%5D.mkv
+
+    - name: Run vspipe
+      shell: bash
+      run: |
+        set -ex
+        VapourSynthR61/vspipe -i bangdream-action.vpy -
+        VapourSynthR61/vspipe -c y4m -p -e 9 bangdream-action.vpy - | ./x265 --input - --y4m -D 10 --preset slower --ctu 32 --crf 18.0 --qg-size 32 --tu-inter-depth 1 --tu-intra-depth 1 --max-tu-size 32 --deblock -1:-1 --pbratio 1.2 --cbqpoffs -2 --crqpoffs -2 --no-sao --me 3 --subme 5 --merange 57 --limit-tu 0 --b-intra --no-rect --no-amp --ref 5 --weightb --keyint 240 --min-keyint 1 --bframes 6 --aq-mode 3 --aq-strength 0.80 --rd 5 --psy-rd 1.6 --psy-rdoq 0.9 --vbv-maxrate 30000 --vbv-bufsize 36000 --rdoq-level 2 --frame-threads 1 --no-open-gop --rc-lookahead 160 --scenecut 40 --qcomp 0.65 --no-strong-intra-smoothing --colorprim bt709 --transfer bt709 --colormatrix bt709 -o 11.hevc
+        ls -l out.hevc x265.log
+        cat x265.log
+        grep -F 'encoded 10 frames' x265.log || exit 2
+        grep -i 'error' x265.log && exit 1
+        exit 0
+
+    - name: Compress artifact
+      run: |
+        7z a -t7z -mx=7 enc-result.7z 11.hevc
+        mkdir result
+        cp enc-result.7z result/enc-result.7z
+
+    - name: Upload artifact
+      uses: actions/upload-artifact@v3
+      with:
+        name: encode-result
+        path: result/*
+
+    - name: Release
+      uses: softprops/action-gh-release@v1
+      if: github.event_name == 'workflow_dispatch' && github.event.inputs.tag != ''
+      with:
+        tag_name: encode-result
+        files: enc-result.7z
+        fail_on_unmatched_files: true
+        generate_release_notes: false
+        prerelease: true
