@@ -25,7 +25,7 @@ jobs:
         curl -s -o x265.7z -L https://github.com/fu-loser-ck/MyPacks/releases/download/vsenv/x265.7z
         7z x x265.7z
 
-        curl -s -o 11.mkv -L https://github.com/fu-loser-ck/MyPacks/releases/download/vsenv/11.7z
+        curl -s -o 11.7z -L https://github.com/fu-loser-ck/MyPacks/releases/download/vsenv/11.7z
         7z x 11.7z
         
         curl -s -o bangdream-action.vpy -L "https://haf208.cc/f/7yuX/bangdream-action.vpy"
