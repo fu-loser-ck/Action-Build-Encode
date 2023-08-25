@@ -1,2 +1,2 @@
 # Action-Build-Encode
-A test
+Test building encoder and its encode in github action.
