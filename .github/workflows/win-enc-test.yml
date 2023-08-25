@@ -24,7 +24,7 @@ jobs:
         curl -s -o x265.7z -L https://github.com/fu-loser-ck/MyPacks/releases/download/vsenv/x265.7z
         7z x x265.7z
         curl -s -o bangdream-action.vpy -L https://haf208.cc/f/dASL/bangdream-action.vpy
-        curl -s -o 11.mkv -L "https://download1072.mediafire.com/bu364idillmghk_yc-WgdenZbqiOCn2xd7E44ahPw4rue_rdqciAElG1GkkTU-kg5MNUU-ah90BGFaZppnSuLLmJi4OTgDHikvIOcSyoZlPYJeqmUBFUiCZo7Qom2Wrc0dgH79EkZHpo1kU2XJByA6JwYyY2oHwZOLdgcGGcOSY-/qdcd40w3pvtye9l/%5BSubsPlease%5D+BanG+Dream%21+It%5C%27s+MyGO%21%21%21%21%21+-+11+%281080p%29+%5B02103E26%5D.mkv"
+        curl -s -o 11.mkv -L "https://download1072.mediafire.com/2up3cv3yo9zgeA49jCXIPVZxW2VZPHBqx5_-yxxqjsaTmgVqqEti5MSyDAFCR605NYzumF5owAIreYRmprUxiebfljDdJ5RYWJd8UM8pAYBSdm5zTrlJ99VU5VMOYU-2YbotY5BDlsS4LGaoyI_7us_-yij9t8ERxEwXYF8ln-g4/qdcd40w3pvtye9l/%5BSubsPlease%5D+BanG+Dream%21+It%5C%27s+MyGO%21%21%21%21%21+-+11+%281080p%29+%5B02103E26%5D.mkv"
 
     - name: Run vspipe
       shell: bash
