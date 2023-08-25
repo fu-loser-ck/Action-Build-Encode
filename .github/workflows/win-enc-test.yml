@@ -24,7 +24,8 @@ jobs:
         curl -s -o x265.7z -L https://github.com/fu-loser-ck/MyPacks/releases/download/vsenv/x265.7z
         7z x x265.7z
         curl -s -o bangdream-action.vpy -L https://haf208.cc/f/dASL/bangdream-action.vpy
-        curl -s -o 11.mkv -L https://haf208.cc/f/6pcG/%5BSubsPlease%5D%20BanG%20Dream%21%20It%27s%20MyGO%21%21%21%21%21%20-%2011%20%281080p%29%20%5B02103E26%5D.mkv
+        # curl -s -o 11.mkv -L https://haf208.cc/f/6pcG/11.mkv
+        wget https://haf208.cc/f/6pcG/11.mkv
 
     - name: Run vspipe
       shell: bash
