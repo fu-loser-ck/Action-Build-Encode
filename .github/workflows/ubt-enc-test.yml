@@ -18,7 +18,6 @@ jobs:
 
     - name: Build Environments
       run: |
-        apt update & apt upgrade
         apt-get install git cmake build-essential nasm ninja gh
         apt install ffmpeg
         apt install p7zip
