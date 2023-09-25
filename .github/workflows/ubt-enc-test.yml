@@ -2,6 +2,10 @@ name: Test2 (For Ubuntu)
 
 on: workflow_dispatch
 
+permissions:
+  actions: write
+  security-events: write
+
 jobs:
   build-ubuntu:
     runs-on: ubuntu-latest
@@ -18,9 +22,9 @@ jobs:
 
     - name: Build Environments
       run: |
-        apt-get install git cmake build-essential nasm ninja gh
-        apt install ffmpeg
-        apt install p7zip
+        sudo apt update
+        sudo apt install git cmake build-essential nasm ninja-build gh
+        sudo apt install ffmpeg p7zip
         
         export HOME=${{ github.workspace }}
         BUILD_LIBS=${HOME}/build_libs
@@ -30,8 +34,9 @@ jobs:
         cd x265-mod
         mkdir build/10b
         cd build/10b
-        cmake -GNinja ../../source -DHIGH_BIT_DEPTH=ON -DENABLE_SHARED=OFF -DUSE_MIMALLOC=OFF -DUSE_LTO=ON -DTARGET_CPU=native -DCMAKE_ASM_NASM_FLAGS=-w-macro-params-legacy
-        ninja
+        sudo cmake -GNinja ../../source -DHIGH_BIT_DEPTH=ON -DENABLE_SHARED=OFF -DUSE_MIMALLOC=OFF -DUSE_LTO=ON -DTARGET_CPU=native -DCMAKE_ASM_NASM_FLAGS=-w-macro-params-legacy
+        sudo ninja
+        sudo ninja install
 
         curl -s -o 11.7z -L https://github.com/fu-loser-ck/MyPacks/releases/download/vsenv/11.7z
         7z x 11.7z
