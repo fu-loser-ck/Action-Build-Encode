@@ -37,7 +37,7 @@ jobs:
       run: |
         set -ex
         echo -e "import vapoursynth as vs\nvs.core.ffms2.Source(\"11.mkv\").set_output()" > bangdream-action.vpy
-        VapourSynthR61/vspipe -c y4m bangdream-action.vpy - | ./x264_x64 -demuxer y4m --preset veryslow --profile high --crf 19.0 --deblock -1:-1 --keyint 480 --min-keyint 1 --ref 9 --vbv-bufsize 30000 --vbv-maxrate 25000 --chroma-qp-offset 1 --qcomp 0.65 --rc-lookahead 80 --aq-mode 3 --aq-strength 0.80 --merange 24 --fgo 1 --psy-rd 0.40:0.15 --no-fast-pskip --colorprim bt709 --transfer bt709 --colormatrix bt709 --subme 10 -o 11.264 -
+        VapourSynthR61/vspipe -c y4m bangdream-action.vpy - | ./x264_x64 --demuxer y4m --preset veryslow --profile high --crf 19.0 --deblock -1:-1 --keyint 480 --min-keyint 1 --ref 9 --vbv-bufsize 30000 --vbv-maxrate 25000 --chroma-qp-offset 1 --qcomp 0.65 --rc-lookahead 80 --aq-mode 3 --aq-strength 0.80 --merange 24 --fgo 1 --psy-rd 0.40:0.15 --no-fast-pskip --colorprim bt709 --transfer bt709 --colormatrix bt709 --subme 10 -o 11.264 -
 
     - name: Compress artifact
       run: |
