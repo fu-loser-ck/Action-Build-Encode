@@ -23,6 +23,7 @@ jobs:
 
         curl -s -o x264.7z -L https://github.com/jpsdr/x264/releases/download/r3107.1/x264_tmod_r3107.1.7z
         7z x x264.7z
+        dir.
         copy .\posix\x264_64.exe .\x264.exe
 
         curl -s -o 11.7z -L https://github.com/fu-loser-ck/MyPacks/releases/download/vsenv/11.7z
