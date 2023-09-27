@@ -43,7 +43,7 @@ jobs:
       run: |
         7z a -t7z -mx=7 enc-result.7z 11.264
         mkdir result
-        cop=y enc-result.7z result/enc-result.7z
+        move enc-result.7z result/enc-result.7z
 
     - name: Upload artifact
       uses: actions/upload-artifact@v3
